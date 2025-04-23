@@ -3,125 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
-    
+    <title>Document</title>
+</head>
+        
+<body>
 
 <style>
+/* Resetando margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body{
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: rgb(138, 136, 134);
-        color: rgb(8, 8, 8);
-        
-    }
-    .menu{
-        background-color: rgb(231, 216, 245);
-        color: aquamarine;
-        justify-items: center;
-    }
+/* Estilos gerais do corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(231, 231, 231);
+    color: #0e0d0d;
+    line-height: 1.6;
+}
+
+/* Estilos do cabeçalho */
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Estilos da seção de contato */
+.contato {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contato label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.contato input,
+.contato textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #867c7c;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.contato button {
+    width: 100%;
+    padding: 10px;
+    background-color: #22df4b9d;
+    color: rgb(8, 7, 7);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
     
-    .menu-lista{
-        list-style: none;/*none tira as bolinhas*/
-        display: flex;
-        padding: 0;
-        margin: 0;
-        
-     
-    }
-    .menu-item{
-        margin: 0;
+}
 
-    
-    }
-    .menu-item a{
-        display: block;
-        padding: 15px 20px;
-        text-decoration: none;
-        color: rgb(124, 6, 6);
-        
-    }
+.contato button:hover {
+    background-color: #285a35;
+}
 
-    .menu-item a:hover{
-        background-color: rgb(228, 176, 176);
-    }
-    .conteudo{
-        background-color: antiquewhite;
-        text-align: center;
-        margin: 20px 37%;
-        padding: 10px;
-    }
-    .conteudo P{
-        text-align: justify;
-        margin: 20px 10px;
-    }
-
-   
-   
-   
-   
-    form {
-  width: 300px;
-  margin: 0 auto;
+/* Estilos do rodapé */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-input[type="text"], input[type="email"], input[type="tel"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-}
-input[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-}
-    
 
 </style>
-</head>
-<body>
-    <nav class="menu">
-        <ul class="menu-lista">
-            <li class="menu-item"><a href="./inicio.html">ínicio</a></li>
-            <li class="menu-item"><a href="./home.html">home</a></li>
-            <li class="menu-item"><a href="./contato.html">contato</a></li>
-            <li class="menu-item"><a href="./sobre.html">sobre</a></li>
-           
-        </ul>
-    </nav>
-    <div class="conteudo">
-        <h1> Bem-Vindo ao Menu Siples  </h1>
-        <p>este menu e so um teste pra memorizar as tegs 
-            e nao mais esquecer 
-        </p>
 
-    </div>
-       
+<header>
+    <h1>Entre em Contato</h1>
+</header>
 
-    <form action="/enviar_contato" method="post">
+<section class="contato">
+    <form action="mailto:seuemail@dominio.com" method="post" enctype="text/plain">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
-    
+
         <label for="email">E-mail:</label>
         <input type="email" id="email" name="email" required>
-    
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone">
-    
-        <label for="outros">Outras Informações:</label>
-        <input type="text" id="outros" name="outros">
-    
-        <input type="submit" value="Enviar">
-        
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+        <button type="submit">Enviar</button>
     </form>
-    
+</section>
+
+<footer>
+    <p>&copy; 2025 NexLevel Marketing. Todos os direitos reservados.</p>
+</footer>
 
 
-    
 </body>
 </html>
