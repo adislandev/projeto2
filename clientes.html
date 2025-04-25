@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXTLEVEL</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #f2e6ff, #fefbff);
+      color: #2e003e;
+      padding: 0 20px;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: radial-gradient(circle at top left, #971199, #6a0dad);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 2.8em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .menu-lista {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 15px;
+    }
+
+    .menu-item a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1); /* Sombra suave padrão */
+}
+
+.menu-item a:hover {
+  color: #00ffff; /* Ciano vibrante */
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; /* Múltiplas sombras para o efeito neon */
+  transform: scale(1.1);
+}
+
+.menu-item a::before { /* Opcional: manter ou remover o sublinhado animado anterior */
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #00ffff;
+  transition: width 0.2s ease-in-out, left 0.2s ease-in-out;
+}
+
+
+    .hero {
+      background: linear-gradient(135deg, #d4b4f7, #f2e6ff);
+      text-align: center;
+      padding: 100px 20px;
+      border-radius: 30px;
+      box-shadow: 0 12px 36px rgba(138, 43, 226, 0.3);
+      margin: 60px auto;
+      animation: fadeInHero 1.5s ease;
+    }
+
+    @keyframes fadeInHero {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-size: 3.2em;
+      margin-bottom: 15px;
+      color: #5e0ea3;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+    }
+
+    .hero p {
+      font-size: 1.4em;
+      margin-bottom: 30px;
+      color: #4a004e;
+    }
+
+    .btn {
+  background-color: #6a0dad;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  box-shadow: 0 8px 20px rgba(106, 13, 173, 0.5);
+  transition: all 0.4s ease-in-out, transform 0.3s ease-in-out; /* Adicionamos a transição para o transform */
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-25deg);
+  transition: all 0.6s ease-in-out;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+.btn:hover {
+  background-color: #541088;
+  transform: translateY(-3px) scale(1.02); /* Move um pouco para cima e aumenta levemente */
+  box-shadow: 0 12px 25px rgba(106, 13, 173, 0.7); /* Sombra mais pronunciada */
+}
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 70px 5%;
+    }
+
+    .content-item {
+  max-width: 900px;
+  margin-bottom: 60px;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border 0.3s ease-in-out; /* Adicionamos a transição para a borda */
+  border: 2px solid transparent; /* Borda transparente por padrão */
+}
+
+.content-item:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 0 45px rgba(186, 85, 211, 0.5);
+  border-color: #8a2be2; /* Cor da borda no hover */
+}
+    .content-item h2 {
+      font-size: 2.4em;
+      color: #6a0dad;
+      margin-bottom: 20px;
+    }
+
+    .content-item p,
+    .content-item blockquote {
+      font-size: 1.2em;
+      color: #3f005f;
+      line-height: 1.9;
+    }
+
+    .content-item blockquote {
+      font-style: italic;
+      margin: 20px 0;
+      border-left: 5px solid #8a2be2;
+      padding-left: 25px;
+      background: #fdf4ff;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #7c0080;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 1.1em;
+      margin-top: 80px;
+      box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
+    }
+
+    footer a {
+      color: #ffe6ff;
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">NEXTLEVEL</div>
+    <nav class="menu">
+      <ul class="menu-lista">
+        <li class="menu-item"><a href="./inicio.html">Início</a></li>
+        <li class="menu-item"><a href="./home.html">Home</a></li>
+        <li class="menu-item"><a href="./contato.html">Contato</a></li>
+        <li class="menu-item"><a href="./clientes.html">Clientes</a></li>
+        <li class="menu-item"><a href="./sobre.html">Sobre</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Nossos Resultados</h1>
+    <p>Confira o impacto real de quem faz parte da nossa jornada.</p>
+    <a href="contato.html" class="btn">Fale Conosco</a>
+  </section>
+
+  <section class="content">
+    <div class="content-item">
+      <h2>Depoimento Inspirador – João Ferreira, Analista de Sistemas na Next</h2>
+      <blockquote>
+        "Receber esta gratificação por parte da Next foi mais do que um reconhecimento financeiro – foi um verdadeiro sinal de valorização. Ao longo dos últimos meses, dediquei-me intensamente aos projetos da equipa, enfrentando desafios técnicos e de gestão. Ver esse esforço ser notado e recompensado deixou-me imensamente motivado. Na Next, cada profissional é essencial para um propósito maior. A cultura organizacional valoriza o crescimento contínuo, a inovação e o bem-estar. Estou grato por fazer parte de um ambiente onde o mérito é reconhecido."
+      </blockquote>
+      <p style="text-align: center; font-weight: bold; color: #6a0dad;">✨ Venha celebrar conosco e faça parte de uma história de dedicação e sucesso! ✨</p>
+    </div>
+
+    <div class="content-item">
+      <h2>As 10 Qualidades de um Profissional de Destaque</h2>
+      <p>O depoimento de João Ferreira destaca dez pilares essenciais: dedicação intensa, comprometimento total, valorização do esforço, motivação elevada, sentimento de pertencimento, abertura ao crescimento, foco na inovação, preocupação com o bem-estar, orgulho na equipa e gratidão. Que este exemplo inspire você a buscar um ambiente onde sua dedicação seja reconhecida e suas conquistas celebradas.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>🌟 Obrigado por visitar a NEXTLEVEL. A tua jornada de sucesso começa aqui.</p>
+    <p><a href="https://gptonline.ai/pt/" target="_blank">Visita GPTOnline Portugal</a> para mais inspiração em design e conteúdo.</p>
+  </footer>
+
+</body>
+</html>
