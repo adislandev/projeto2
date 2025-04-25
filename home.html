@@ -1,80 +1,224 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
-    
-
-<style>
-
-    body{
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: rgb(138, 136, 134);
-        color: rgb(8, 8, 8);
-        
-    }
-    .menu{
-        background-color: rgb(231, 216, 245);
-        color: aquamarine;
-        justify-items: center;
-    }
-    
-    .menu-lista{
-        list-style: none;/*none tira as bolinhas*/
-        display: flex;
-        padding: 0;
-        margin: 0;
-        
-     
-    }
-    .menu-item{
-        margin: 0;
-
-    
-    }
-    .menu-item a{
-        display: block;
-        padding: 15px 20px;
-        text-decoration: none;
-        color: rgb(124, 6, 6);
-        
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marketing Digital Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .menu-item a:hover{
-        background-color: rgb(228, 176, 176);
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      background: #0f2027;
+      color: #ffffff;
+      overflow-x: hidden;
     }
-    .conteudo{
-        background-color: antiquewhite;
-        text-align: center;
-        margin: 20px 37%;
-        padding: 10px;
-    }
-    .conteudo P{
-        text-align: justify;
-        margin: 20px 10px;
-    }
-    
 
-</style>
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      padding: 20px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 17px;
+      position: relative;
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #00f7ff;
+      transition: width 0.4s ease, left 0.4s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    nav a:hover {
+      color: #00f7ff;
+    }
+
+    .spacer {
+      height: 100px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      background: url('https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      max-width: 800px;
+      margin-bottom: 30px;
+      z-index: 3;
+      color: #ffffff;
+      text-shadow: 2px 2px 12px rgba(0, 255, 255, 0.4);
+      animation: zoomIn 1.2s ease-out;
+    }
+
+    .hero button {
+      position: relative;
+      z-index: 3;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: #ffffff;
+      padding: 16px 42px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 10px 40px rgba(0, 119, 204, 0.7);
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .hero button i {
+      font-size: 1.1rem;
+    }
+
+    .hero button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, #ff0044, #00f7ff, #00ff80, #0066ff);
+      background-size: 400% 400%;
+      animation: neonGlow 4s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes neonGlow {
+      0% {
+        background-position: 100% 0;
+      }
+      25% {
+        background-position: 0 100%;
+      }
+      50% {
+        background-position: 100% 100%;
+      }
+      75% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 100% 0;
+      }
+    }
+
+    .hero button:hover {
+      transform: scale(1.07);
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      box-shadow: 0 14px 48px rgba(0, 119, 204, 0.9);
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+        padding: 0 10px;
+      }
+
+      .hero button {
+        padding: 12px 30px;
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav class="menu">
-        <ul class="menu-lista">
-            <li class="menu-item"><a href="./inicio.html">ínicio</a></li>
-            <li class="menu-item"><a href="./home.html">home</a></li>
-            <li class="menu-item"><a href="./contato.html">contato</a></li>
-            <li class="menu-item"><a href="./sobre.html">sobre</a></li>
-           
-        </ul>
-    </nav>
-    <div class="conteudo">
-        <h1> Bem-Vindo ao Menu Siples  </h1>
-        <p>este menu e so um teste pra memorizar as tegs 
-            e nao mais esquecer 
-        </p>
 
-    </div>
-    
+<header>
+  <nav>
+    <ul>
+      <li><a href="./home.html">Início</a></li>
+      <li><a href="./contato.html">Contato</a></li>
+      <li><a href="./index.html">Serviços</a></li>
+      <li><a href="./sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="spacer"></div>
+
+<section class="hero">
+  <h1>“Ajudamos empresas a vender mais com marketing digital.”</h1>
+  <button><i class="fas fa-comments"></i> Fale Conosco</button>
+</section>
+
 </body>
 </html>
+
