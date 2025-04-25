@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Serviços</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --text-light: #f8f9fa;
+            --text-dark: #343a40;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        
+        .header-section {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            padding: 60px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--light-bg);
+            clip-path: polygon(0 50%, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .header-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-section {
+            margin-top: -50px;
+            padding-bottom: 80px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .service-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+        
+        .service-icon {
+            font-size: 70px;
+        }
+        
+        .service-content {
+            padding: 25px;
+            background-color: white;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .service-description {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .service-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .service-link:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+            color: white;
+        }
+        
+        /* Modal Styling */
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 20px 30px;
+        }
+        
+        .modal-icon-header {
+            background-color: var(--accent-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+        
+        .modal-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-footer {
+            padding: 20px 30px;
+            border: none;
+            background-color: #f8f9fa;
+        }
+        
+        .btn-modal-action {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-modal-action:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+        
+        .feature-card {
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            margin-bottom: 15px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .feature-card h6 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .badge-custom {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header-section">
+        <div class="container">
+            <h1 class="header-title">Serviços Digitais</h1>
+            <p class="header-subtitle">Transformamos sua presença online com estratégias inovadoras para atrair, engajar e converter seu público-alvo.</p>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="row">
+                <!-- Tráfego Pago -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <div class="service-image">
+                            <i class="fas fa-chart-line service-icon"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Tráfego Pago</h3>
+                            <p class="service-description">Atraia mais clientes com campanhas de anúncios online eficazes e segmentadas.</p>
+                            <button class="service-link" data-bs-toggle="modal" data-bs-target="#trafegoModal">Saiba Mais</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Redes Sociais -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <div class="service-image">
+                            <i class="fas fa-hashtag service-icon"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Redes Sociais</h3>
+                            <p class="service-description">Gerencie sua presença nas principais plataformas sociais e conecte-se com seu público.</p>
+                            <button class="service-link" data-bs-toggle="modal" data-bs-target="#redesModal">Saiba Mais</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Criação de Sites -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <div class="service-image">
+                            <i class="fas fa-laptop-code service-icon"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Criação de Sites</h3>
+                            <p class="service-description">Desenvolvemos websites modernos, responsivos e otimizados para o seu negócio.</p>
+                            <button class="service-link" data-bs-toggle="modal" data-bs-target="#sitesModal">Saiba Mais</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SEO -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <div class="service-image">
+                            <i class="fas fa-search service-icon"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">SEO</h3>
+                            <p class="service-description">Otimize seu site para aparecer nas primeiras posições dos resultados de busca orgânica.</p>
+                            <button class="service-link" data-bs-toggle="modal" data-bs-target="#seoModal">Saiba Mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal Tráfego Pago -->
+    <div class="modal fade" id="trafegoModal" tabindex="-1" aria-labelledby="trafegoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="trafegoModalLabel">
+                        <div class="modal-icon-header">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        Tráfego Pago
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Alcance resultados rápidos</h4>
+                            <p>Nossos especialistas em marketing digital desenvolvem estratégias de tráfego pago que conectam sua marca às pessoas certas, no momento certo.</p>
+                            
+                            <div class="mt-4">
+                                <span class="badge-custom">Google Ads</span>
+                                <span class="badge-custom">Facebook Ads</span>
+                                <span class="badge-custom">Instagram Ads</span>
+                                <span class="badge-custom">LinkedIn Ads</span>
+                                <span class="badge-custom">TikTok Ads</span>
+                                <span class="badge-custom">Remarketing</span>
+                            </div>
+                            
+                            <div class="feature-card mt-4">
+                                <h6>Quem precisa de tráfego pago?</h6>
+                                <p>Se você deseja resultados rápidos, direcionar visitantes qualificados para o seu site ou aumentar as vendas dos seus produtos ou serviços, o tráfego pago é uma estratégia essencial.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card">
+                                <h6>Estratégia personalizada</h6>
+                                <p>Criamos uma estratégia customizada para o seu negócio, considerando seu público-alvo, orçamento e objetivos específicos.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Públicos segmentados</h6>
+                                <p>Alcance pessoas com interesses específicos, comportamentos de compra e características demográficas que se alinham ao seu negócio.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Otimização contínua</h6>
+                                <p>Ajustamos constantemente suas campanhas para melhorar a performance e maximizar o retorno sobre o investimento.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Relatórios transparentes</h6>
+                                <p>Receba relatórios detalhados sobre o desempenho das suas campanhas, com métricas e insights valiosos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-modal-action">Solicitar Proposta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Redes Sociais -->
+    <div class="modal fade" id="redesModal" tabindex="-1" aria-labelledby="redesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="redesModalLabel">
+                        <div class="modal-icon-header">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        Gestão de Redes Sociais
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Engaje seu público</h4>
+                            <p>Criamos e gerenciamos conteúdo relevante para suas redes sociais, construindo uma comunidade engajada e fortalecendo o relacionamento com seus clientes.</p>
+                            
+                            <div class="mt-4">
+                                <h5>Nossos contatos:</h5>
+                                <p>
+                                    <i class="fab fa-instagram me-2"></i> Instagram: @nexlevelmarketing<br>
+                                    <i class="fab fa-facebook me-2"></i> Facebook: nexlevelmarketing<br>
+                                    <i class="fab fa-whatsapp me-2"></i> WhatsApp: +55 (69) 9925-6005<br>
+                                    <i class="far fa-envelope me-2"></i> Email: contato@nexlevelmarketing.com.br
+                                </p>
+                            </div>
+                            
+                            <div class="feature-card mt-4">
+                                <h6>Por que investir em redes sociais?</h6>
+                                <p>As redes sociais são canais essenciais para construir relacionamentos, aumentar a visibilidade da marca e criar um canal direto de comunicação com seu público.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card">
+                                <h6>Planejamento estratégico</h6>
+                                <p>Desenvolvemos um plano de conteúdo alinhado aos objetivos do seu negócio e ao comportamento do seu público-alvo.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Produção de conteúdo</h6>
+                                <p>Criamos textos, imagens e vídeos de alta qualidade que engajam seu público e fortalecem o posicionamento da sua marca.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Gerenciamento de comunidade</h6>
+                                <p>Monitoramos e respondemos comentários e mensagens, criando uma experiência positiva para seus seguidores.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Análise de performance</h6>
+                                <p>Avaliamos os resultados das publicações e da estratégia como um todo, fazendo ajustes constantes para melhorar o desempenho.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-modal-action">Entrar em Contato</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Criação de Sites -->
+    <div class="modal fade" id="sitesModal" tabindex="-1" aria-labelledby="sitesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sitesModalLabel">
+                        <div class="modal-icon-header">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        Criação de Sites
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Sites que convertem</h4>
+                            <p>Criamos websites modernos, rápidos e otimizados para dispositivos móveis que não apenas impressionam visualmente, mas também são estrategicamente projetados para converter visitantes em clientes.</p>
+                            
+                            <div class="mt-4">
+                                <span class="badge-custom">Sites Responsivos</span>
+                                <span class="badge-custom">E-commerce</span>
+                                <span class="badge-custom">Landing Pages</span>
+                                <span class="badge-custom">Blogs</span>
+                                <span class="badge-custom">Portais</span>
+                                <span class="badge-custom">Sistemas Web</span>
+                            </div>
+                            
+                            <div class="feature-card mt-4">
+                                <h6>Nosso processo de desenvolvimento</h6>
+                                <p>1. Briefing e planejamento<br>
+                                2. Design e prototipagem<br>
+                                3. Desenvolvimento e programação<br>
+                                4. Testes e ajustes<br>
+                                5. Lançamento e otimização</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card">
+                                <h6>Design exclusivo</h6>
+                                <p>Cada projeto é único, com design personalizado que reflete a identidade da sua marca e se destaca da concorrência.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Totalmente responsivo</h6>
+                                <p>Seu site funcionará perfeitamente em todos os dispositivos: computadores, tablets e smartphones.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Otimizado para SEO</h6>
+                                <p>Desenvolvemos seu site seguindo as melhores práticas de SEO para garantir uma boa classificação nos motores de busca.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Painel administrativo</h6>
+                                <p>Tenha controle total sobre seu conteúdo com um painel administrativo intuitivo e fácil de usar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-modal-action">Solicitar Orçamento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal SEO -->
+    <div class="modal fade" id="seoModal" tabindex="-1" aria-labelledby="seoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="seoModalLabel">
+                        <div class="modal-icon-header">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        SEO - Otimização para Buscadores
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Conquiste as primeiras posições</h4>
+                            <p>Através de estratégias avançadas de SEO (Search Engine Optimization), ajudamos seu site a alcançar as primeiras posições no Google e outros buscadores, aumentando sua visibilidade e o tráfego orgânico.</p>
+                            
+                            <div class="mt-4">
+                                <span class="badge-custom">SEO On-page</span>
+                                <span class="badge-custom">SEO Off-page</span>
+                                <span class="badge-custom">SEO Técnico</span>
+                                <span class="badge-custom">SEO Local</span>
+                                <span class="badge-custom">Content Marketing</span>
+                                <span class="badge-custom">Link Building</span>
+                            </div>
+                            
+                            <div class="feature-card mt-4">
+                                <h6>Por que investir em SEO?</h6>
+                                <p>O SEO proporciona resultados de longo prazo, constrói credibilidade e autoridade, além de trazer tráfego qualificado com custo por aquisição menor que a publicidade paga.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card">
+                                <h6>Análise completa</h6>
+                                <p>Realizamos uma análise profunda do seu site e do mercado para identificar oportunidades de melhoria e definir a melhor estratégia.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Otimização técnica</h6>
+                                <p>Melhoramos a estrutura do seu site, velocidade de carregamento, indexação e outros fatores técnicos que influenciam o ranqueamento.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Conteúdo otimizado</h6>
+                                <p>Criamos e otimizamos conteúdo relevante e de qualidade, focado nas palavras-chave mais estratégicas para o seu negócio.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h6>Monitoramento e relatórios</h6>
+                                <p>Acompanhamos de perto os resultados da sua estratégia de SEO, com relatórios detalhados e ajustes constantes para maximizar os resultados.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-modal-action">Fazer Análise Gratuita</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
