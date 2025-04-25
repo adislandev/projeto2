@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog | Alvo Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cor-fundo: #0f0f0f;
+      --cor-texto: #ffffff;
+      --cor-destaque: #ff6b00;
+      --cor-card: #1a1a1a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: #111;
+      border-bottom: 2px solid var(--cor-destaque);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: var(--cor-destaque);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .post-card {
+      background-color: var(--cor-card);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .post-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .post-content {
+      padding: 20px;
+    }
+
+    .post-content h2 {
+      font-size: 1.4rem;
+      color: var(--cor-destaque);
+      margin-bottom: 10px;
+    }
+
+    .post-content p {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .post-content a {
+      color: var(--cor-destaque);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .post-content a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      color: #888;
+      font-size: 0.9rem;
+      margin-top: 60px;
+      border-top: 1px solid #222;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📚 Blog da Alvo Digital</h1>
+    <p>Dicas, estratégias e insights para você vender mais no digital.</p>
+    <p><a href="../index.html" style="color: var(--cor-destaque); font-weight: bold;">← Voltar ao site</a></p>
+  </header>
+
+  <div class="container">
+    <div class="post-grid">
+      <!-- Post 1 -->
+      <div class="post-card">
+        <img src="https://via.placeholder.com/600x300" alt="Imagem do post 1">
+        <div class="post-content">
+          <h2>Como aumentar suas vendas com tráfego pago</h2>
+          <p>Aprenda estratégias práticas para escalar suas vendas com Google e Meta Ads.</p>
+          <a href="post1.html">Leia mais →</a>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="post-card">
+        <img src="https://via.placeholder.com/600x300" alt="Imagem do post 2">
+        <div class="post-content">
+          <h2>Redes sociais: o que postar para atrair clientes?</h2>
+          <p>Dicas de conteúdo e engajamento para Instagram, TikTok e Facebook.</p>
+          <a href="post2.html">Leia mais →</a>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="post-card">
+        <img src="https://via.placeholder.com/600x300" alt="Imagem do post 3">
+        <div class="post-content">
+          <h2>SEO em 2025: o que mudou e como se destacar</h2>
+          <p>Entenda as novas regras do jogo para posicionar seu site no topo do Google.</p>
+          <a href="post3.html">Leia mais →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Alvo Digital – Estratégias de Marketing que Funcionam
+  </footer>
+
+</body>
+</html>
