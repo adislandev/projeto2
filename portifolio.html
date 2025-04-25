@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexLevel Marketing - Portfólio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .menu {
+            background-color: #6b46c1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .menu-lista {
+            list-style: none;
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .menu-item {
+            margin: 0;
+        }
+        
+        .menu-item a {
+            display: block;
+            padding: 18px 25px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            text-transform: capitalize;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .menu-item a:hover {
+            background-color: #8b5cf6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background-color: #8b5cf6;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+        
+        .conteudo {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .conteudo p {
+            text-align: justify;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #6b46c1;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background-color: #5a32b0;
+        }
+        
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        /* Estilos específicos para a página de portfólio */
+        .portfolio-intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .portfolio-intro h2 {
+            color: #6b46c1;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .portfolio-filtros {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .filtro-btn {
+            padding: 10px 20px;
+            background-color: #f1e8ff;
+            border: none;
+            border-radius: 30px;
+            color: #6b46c1;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filtro-btn:hover, .filtro-btn.ativo {
+            background-color: #6b46c1;
+            color: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .projeto-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .projeto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .projeto-imagem {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .projeto-imagem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .projeto-card:hover .projeto-imagem img {
+            transform: scale(1.05);
+        }
+        
+        .projeto-categoria {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #6b46c1;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .projeto-info {
+            padding: 25px;
+        }
+        
+        .projeto-info h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .projeto-cliente {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .projeto-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 15px 0;
+        }
+        
+        .projeto-tag {
+            background-color: #f1e8ff;
+            color: #6b46c1;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .projeto-resultados {
+            background-color: #f9f4ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .projeto-resultados h4 {
+            color: #6b46c1;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .resultado-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .resultado-item:before {
+            content: "✓";
+            color: #6b46c1;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .projeto-btn {
+            display: inline-block;
+            background-color: #6b46c1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .projeto-btn:hover {
+            background-color: #5a32b0;
+        }
+        
+        .estudo-caso {
+            background-color: #f9f4ff;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0;
+            border-left: 5px solid #6b46c1;
+        }
+        
+        .estudo-caso h3 {
+            color: #6b46c1;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .estudo-caso-conteudo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .estudo-caso-texto {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .estudo-caso-imagem {
+            flex: 1;
+            min-width: 250px;
+            background-color: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .estudo-caso-imagem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .metricas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .metrica-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .metrica-valor {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6b46c1;
+            margin-bottom: 5px;
+        }
+        
+        .metrica-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .depoimento {
+            font-style: italic;
+            border-left: 3px solid #6b46c1;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        
+        .depoimento-autor {
+            font-weight: 600;
+            text-align: right;
+            margin-top: 10px;
+        }
+        
+        .depoimento-cargo {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .contato-secao {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #f1e8ff;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        .contato-secao h3 {
+            color: #6b46c1;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-lista {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .estudo-caso-conteudo {
+                flex-direction: column;
+            }
+            
+            .metricas-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .metricas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-filtros {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filtro-btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <ul class="menu-lista">
+            <li class="menu-item"><a href="./inicio.html">Início</a></li>
+            <li class="menu-item"><a href="./home.html">Home</a></li>
+            <li class="menu-item"><a href="./portfolio.html">Portfólio</a></li>
+            <li class="menu-item"><a href="./contato.html">Contato</a></li>
+            <li class="menu-item"><a href="./sobre.html">Sobre</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Nosso Portfólio</h1>
+            <h2>CASES DE SUCESSO QUE TRANSFORMARAM NEGÓCIOS</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="conteudo">
+            <div class="portfolio-intro">
+                <h2>Projetos que impulsionaram marcas</h2>
+                <p>Confira alguns dos nossos trabalhos mais relevantes e os resultados que alcançamos para nossos clientes. Cada projeto representa nosso compromisso com a excelência e nossa capacidade de entregar resultados mensuráveis.</p>
+            </div>
+            
+            <div class="portfolio-filtros">
+                <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="midias-sociais">Mídias Sociais</button>
+                <button class="filtro-btn" data-filtro="seo">SEO</button>
+                <button class="filtro-btn" data-filtro="branding">Branding</button>
+                <button class="filtro-btn" data-filtro="marketing-conteudo">Marketing de Conteúdo</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Projeto 1 -->
+                <div class="projeto-card" data-categoria="midias-sociais">
+                    <div class="projeto-imagem">
+                        <img src="/api/placeholder/400/200" alt="Campanha Instagram para Café Aroma">
+                        <span class="projeto-categoria">Mídias Sociais</span>
+                    </div>
+                    <div class="projeto-info">
+                        <h3>Campanha de Engajamento no Instagram</h3>
+                        <span class="projeto-cliente">Cliente: Café Aroma</span>
+                        <p>Estratégia completa de conteúdo para Instagram que aumentou o engajamento da marca e impulsionou as vendas online.</p>
+                        <div class="projeto-tags">
+                            <span class="projeto-tag">Instagram</span>
+                            <span class="projeto-tag">Conteúdo</span>
+                            <span class="projeto-tag">E-commerce</span>
+                        </div>
+                        <div class="projeto-resultados">
+                            <h4>Resultados:</h4>
+                            <div class="resultado-item">Aumento de 178% em seguidores</div>
+                            <div class="resultado-item">Crescimento de 65% nas vendas online</div>
+                            <div class="resultado-item">Taxa de engajamento de 4.7%</div>
+                        </div>
+                        <a href="#estudo-caso-1" class="projeto-btn">Ver Detalhes</a>
+                    </div>
+                </div>
+                
+                <!-- Projeto 2 -->
+                <div class="projeto-card" data-categoria="seo">
+                    <div class="projeto-imagem">
+                        <img src="/api/placeholder/400/200" alt="Estratégia de SEO para Clínica Vitalis">
+                        <span class="projeto-categoria">SEO</span>
+                    </div>
+                    <div class="projeto-info">
+                        <h3>Otimização SEO para Serviços de Saúde</h3>
+                        <span class="projeto-cliente">Cliente: Clínica Vitalis</span>
+                        <p>Estratégia de SEO focada em palavras-chave locais para aumentar a visibilidade da clínica nos resultados de busca.</p>
+                        <div class="projeto-tags">
+                            <span class="projeto-tag">SEO Local</span>
+                            <span class="projeto-tag">Google My Business</span>
+                            <span class="projeto-tag">Link Building</span>
+                        </div>
+                        <div class="projeto-resultados">
+                            <h4>Resultados:</h4>
+                            <div class="resultado-item">1ª posição para 15 palavras-chave principais</div>
+                            <div class="resultado-item">Aumento de 210% no tráfego orgânico</div>
+                            <div class="resultado-item">Crescimento de 85% em agendamentos online</div>
+                        </div>
+                        <a href="#" class="projeto-btn">Ver Detalhes</a>
+                    </div>
+                </div>
+                
+                <!-- Projeto 3 -->
+                <div class="projeto-card" data-categoria="branding">
+                    <div class="projeto-imagem">
+                        <img src="/api/placeholder/400/200" alt="Rebranding TechFusion">
+                        <span class="projeto-categoria">Branding</span>
+                    </div>
+                    <div class="projeto-info">
+                        <h3>Reposicionamento de Marca</h3>
+                        <span class="projeto-cliente">Cliente: TechFusion</span>
+                        <p>Redesenho completo da identidade visual e estratégia de posicionamento para empresa de tecnologia em expansão.</p>
+                        <div class="projeto-tags">
+                            <span class="projeto-tag">Identidade Visual</span>
+                            <span class="projeto-tag">Posicionamento</span>
+                            <span class="projeto-tag">Brand Voice</span>
+                        </div>
+                        <div class="projeto-resultados">
+                            <h4>Resultados:</h4>
+                            <div class="resultado-item">Percepção de valor aumentada em 45%</div>
+                            <div class="resultado-item">Reconhecimento de marca aumentou 60%</div>
+                            <div class="resultado-item">Aumento de 35% na captação de leads qualificados</div>
+                        </div>
+                        <a href="#" class="projeto-btn">Ver Detalhes</a>
+                    </div>
+                </div>
+                
+                <!-- Projeto 4 -->
+                <div class="projeto-card" data-categoria="marketing-conteudo">
+                    <div class="projeto-imagem">
+                        <img src="/api/placeholder/400/200" alt="Blog Educafin">
+                        <span class="projeto-categoria">Marketing de Conteúdo</span>
+                    </div>
+                    <div class="projeto-info">
+                        <h3>Blog de Educação Financeira</h3>
+                        <span class="projeto-cliente">Cliente: EducaFin</span>
+                        <p>Desenvolvimento de estratégia completa de conteúdo para posicionar a marca como autoridade em educação financeira.</p>
+                        <div class="projeto-tags">
+                            <span class="projeto-tag">Blog</span>
+                            <span class="projeto-tag">E-books</span>
+                            <span class="projeto-tag">Infográficos</span>
+                        </div>
+                        <div class="projeto-resultados">
+                            <h4>Resultados:</h4>
+                            <div class="resultado-item">Aumento de 320% em tráfego orgânico</div>
+                            <div class="resultado-item">12.500 leads gerados em 6 meses</div>
+                            <div class="resultado-item">Taxa de conversão de 3.8%</div>
+                        </div>
+                        <a href="#" class="projeto-btn">Ver Detalhes</a>
+                    </div>
+                </div>
+                
+                <!-- Projeto 5 -->
+                <div class="projeto-card" data-categoria="midias-sociais">
+                    <div class="projeto-imagem">
+                        <img src="/api/placeholder/400/200" alt="Campanha Facebook Ads">
+                        <span class="projeto-categoria">Mídias Sociais</span>
+                    </div>
+                    <div class="projeto-info">
+                        <h3>Campanha de Mídia Paga</h3>
+                        <span class="projeto-cliente">Cliente: ModaFit</span>
+                        <p>Estratégia de Facebook e Instagram Ads para lançamento de nova coleção fitness com foco em conversões.</p>
+                        <div class="projeto-tags">
+                            <span class="projeto-tag">Facebook Ads</span>
+                            <span class="projeto-tag">Instagram Ads</span>
+                            <span class="projeto-tag">Remarketing</span>
+                        </div>
+                        <div class="projeto-resultados">
+                            <h4>Resultados:</h4>
+                            <div class="resultado-item">ROI de 450%</div>
+                            <div class="resultado-item">CPL reduzido em 42%</div>
+                            <div class="resultado-item">3.200 vendas em 14 dias</div>
+                        </div>
+                        <a href="#" class="projeto-btn">Ver Detalhes</a>
+                    </div>
+                </div>
+                
+                <!-- Projeto 6 -->
+                <div class="projeto-card" data-categoria="seo">
+                    <div class="projeto-imagem">
+                        <img src="/api/placeholder/400/200" alt="SEO E-commerce">
+                        <span class="projeto-categoria">SEO</span>
+                    </div>
+                    <div class="projeto-info">
+                        <h3>Otimização Técnica para E-commerce</h3>
+                        <span class="projeto-cliente">Cliente: TechStore</span>
+                        <p>Implementação de melhorias técnicas de SEO para e-commerce, incluindo otimização de velocidade e experiência mobile.</p>
+                        <div class="projeto-tags">
+                            <span class="projeto-tag">SEO Técnico</span>
+                            <span class="projeto-tag">Mobile-first</span>
+                            <span class="projeto-tag">Core Web Vitals</span>
+                        </div>
+                        <div class="projeto-resultados">
+                            <h4>Resultados:</h4>
+                            <div class="resultado-item">Melhoria de 85% na pontuação PageSpeed</div>
+                            <div class="resultado-item">Redução de 60% na taxa de rejeição</div>
+                            <div class="resultado-item">Aumento de 45% na taxa de conversão</div>
+                        </div>
+                        <a href="#" class="projeto-btn">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Estudo de caso detalhado -->
+            <div id="estudo-caso-1" class="estudo-caso">
+                <h3>Estudo de Caso: Café Aroma</h3>
+                <div class="estudo-caso-conteudo">
+                    <div class="estudo-caso-texto">
+                        <p>O Café Aroma, uma marca de café orgânico premium, enfrentava desafios para expandir seu alcance digital e conectar-se com novos consumidores. Com uma presença online limitada e baixa interação nas redes sociais, a marca buscou nossa ajuda para transformar sua estratégia digital.</p>
+                        
+                        <p>Nossa abordagem incluiu:</p>
+                        <ul style="margin-left: 20px; margin-bottom: 20px;">
+                            <li>Desenvolvimento de identidade visual consistente para o Instagram</li>
+                            <li>Criação de calendário editorial baseado em pilares de conteúdo estratégicos</li>
+                            <li>Produção de conteúdos educativos sobre café e sustentabilidade</li>
+                            <li>Implementação de estratégia de engajamento com a comunidade</li>
+                            <li>Campanhas de micro-influenciadores especializados em gastronomia</li>
+                        </ul>
+                        
+                        <div class="metricas-grid">
+                            <div class="metrica-card">
+                                <div class="metrica-valor">178%</div>
+                                <div class="metrica-label">Aumento de seguidores</div>
+                            </div>
+                            <div class="metrica-card">
+                                <div class="metrica-valor">65%</div>
+                                <div class="metrica-label">Crescimento em vendas</div>
+                            </div>
+                            <div class="metrica-card">
+                                <div class="metrica-valor">4.7%</div>
+                                <div class="metrica-label">Taxa de engajamento</div>
+                            </div>
+                            <div class="metrica-card">
+                                <div class="metrica-valor">320%</div>
+                                <div class="metrica-label">Aumento em visitas ao site</div>
+                            </div>
+                        </div>
+                        
+                        <div class="depoimento">
+                            <p>"A estratégia desenvolvida pela NexLevel transformou completamente nossa presença digital. Não apenas aumentamos nossos seguidores, mas conseguimos criar uma comunidade engajada que se converteu em clientes fiéis. O retorno sobre o investimento superou todas as nossas expectativas."</p>
+                            <div class="depoimento-autor">
+                                Marina Silva
+                                <div class="depoimento-cargo">Diretora de Marketing, Café Aroma</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="estudo-caso-imagem">
+                        <img src="/api/placeholder/400/500" alt="Resultado Visual da Campanha Café Aroma">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contato-secao">
+                <h3>Pronto para transformar os resultados do seu negócio?</h3>
+                <p>Entre em contato conosco hoje mesmo e descubra como podemos ajudar sua marca a alcançar novos patamares.</p>
+                <a href="./contato.html" class="cta-button">Solicitar Proposta</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 NexLevel Marketing. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para filtragem de projetos
+        document.addEventListener('DOMContentLoaded', function() {
+            const filtrosBtns = document.querySelectorAll('.filtro-btn');
+            const projetoCards = document.querySelectorAll('.projeto-card');
+            
+            // Adicionar evento de clique aos botões de filtro
+            filtrosBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remover classe 'ativo' de todos os botões
+                    filtrosBtns.forEach(b => b.classList.remove('ativo'));
+                    
+                    // Adicionar classe 'ativo' ao botão clicado
+                    this.classList.add('ativo');
+                    
+                    // Obter o valor do filtro
+                    const filtro = this.getAttribute('data-filtro');
+                    
+                    // Filtrar os projetos
+                    projetoCards.forEach(card => {
+                        if (filtro === 'todos' || card.getAttribute('data-categoria') === filtro) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Adicionar evento de scroll suave para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Efeito de scroll para a navbar
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.menu');
+                if (window.scrollY > 100) {
+                    navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
